@@ -1,98 +1,29 @@
-#Importing modules
+DIfference between Datascience,Machine leanring and Data Analytics
+https://www.simplilearn.com/data-science-vs-data-analytics-vs-machine-learning-article
 
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn import ensemble
-from sklearn.metrics import mean_absolute_error
 
-# Step-2 Importing dataset
-df = pd.read_csv("E:\VSCODE\GIT_Hub\myML\Proj1-GradientBoosting-MelbourneHousingPrice\Melbourne_housing_FULL\Melbourne_housing_FULL.csv")
-#df = pd.read_csv("C:\\Users\\n0278588\Desktop\\Melbourne_housing_FULL.csv")
-#print(df.columns)
+Individual property value estimation outputs
 
-# Step-3 Scrubbing
-# As part of scrubbing here w eare deleting unwanted columns
-del df["Address"]
-del df["Method"]
-del df["SellerG"]
-del df["Date"]
-del df["Postcode"]
-del df["Lattitude"]
-del df["Longtitude"]
-del df["Regionname"]
-del df["Propertycount"]
+Year of built = 1956
+3 Bedroom :- This property has an estimated value of AUD $805675.4334842528
+1 Bedroom :- This property has an estimated value of AUD $718317.5547129456
 
-##Next scrubbing is do remove the missing values
-df.dropna(axis=0, how="any", thresh=None, subset=None, inplace=True)
+Year changed to :- 2018
+3 Bedroom :- This property has an estimated value of AUD $521416.524635764
+1 Bedroom :- This property has an estimated value of AUD $607474.978549454
 
-##Converting Non-Numeric into Nuemeric using Hot-Encoding
-features_df = pd.get_dummies(df, columns=["Suburb", "CouncilArea", "Type"])
-
-##Remove the Proce column bcz its going to be our Target(y) and
-##currenlty its with our feature(X)
-del features_df["Price"]
-
-##Now create X and y arrays from the dataset using .values
-X = features_df.values
-y = df["Price"].values
-
-#Step-4 Split the Dataset
-##We are splitting with standard 70/30 splitting ratio
-
-X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.3,shuffle=True) #Shuffle will not work with scikit-leanr 0.18
-#X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.3)
-
-#Step-5 Select ALgorithm and configure hyperparametes
-model = ensemble.GradientBoostingRegressor(
-    n_estimators= 600,
-    learning_rate= 0.02,
-    max_depth= 7,
-    min_samples_split= 4,
-    min_samples_leaf= 5,
-    max_features= 0.8,
-    loss= 'huber'
-
-)
-
-##Train the model by using the Fit command
-print("Data modelling in progress..")
-model.fit(X_train,y_train)
-
-#Step-6 Evalute the Results
-##We are using MAE for evaluting the errors in prediction
-mse = mean_absolute_error(y_train,model.predict(X_train))
-print(f"Training Set Mean Absolute Error: {mse}")
-
-##MAE with test Data
-mse = mean_absolute_error(y_test,model.predict(X_test))
-print(f"Test Set Mean Absolute Error: {mse}")
-
-print("\nModelling Completed")
-
-##To find out the input variables for target
-#cols = features_df.columns.tolist()
-#
-#print("house_to_value = [")
-#
-#for item in cols:
-#    #print("\t0, "+"#"+item)
-#    print(f"\t0, #{item}")
-#
-#print("]")
-
-#Input variable adjusted for predicting the target
-##Rooms: 1, Distance: 20, Bedroom: 3, Bathroom: 1, Car: 0, Landsize: 534, BuildingArea: 220,
-#  YearBuilt: 1950, Suburb: Altona, CouncilArea: Hobsons Bay City Council, Type: h (house)
+===========================================================================
+Intial input variables
 
 house_to_value = [
-        1, #Rooms
-        20, #Distance
-        1, #Bedroom2
-        1, #Bathroom
+        0, #Rooms
+        0, #Distance
+        0, #Bedroom2
+        0, #Bathroom
         0, #Car
-        534, #Landsize
-        220, #BuildingArea
-        2018, #YearBuilt
+        0, #Landsize
+        0, #BuildingArea
+        0, #YearBuilt
         0, #Suburb_Abbotsford
         0, #Suburb_Aberfeldie
         0, #Suburb_Airport West
@@ -100,7 +31,7 @@ house_to_value = [
         0, #Suburb_Albert Park
         0, #Suburb_Albion
         0, #Suburb_Alphington
-        1, #Suburb_Altona
+        0, #Suburb_Altona
         0, #Suburb_Altona Meadows
         0, #Suburb_Altona North
         0, #Suburb_Ardeer
@@ -418,7 +349,7 @@ house_to_value = [
         0, #CouncilArea_Frankston City Council
         0, #CouncilArea_Glen Eira City Council
         0, #CouncilArea_Greater Dandenong City Council
-        1, #CouncilArea_Hobsons Bay City Council
+        0, #CouncilArea_Hobsons Bay City Council
         0, #CouncilArea_Hume City Council
         0, #CouncilArea_Kingston City Council
         0, #CouncilArea_Knox City Council
@@ -441,14 +372,6 @@ house_to_value = [
         0, #CouncilArea_Wyndham City Council
         0, #CouncilArea_Yarra City Council
         0, #CouncilArea_Yarra Ranges Shire Council
-        1, #Type_h
+        0, #Type_h
         0, #Type_t
         0, #Type_u
-]
-
-#Predicting the target now
-house_to_value = [house_to_value]
-prediction = model.predict(house_to_value)
-predicted_house_value = prediction[0]
-
-print(f"This property has an estimated value of AUD ${predicted_house_value}")
