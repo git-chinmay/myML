@@ -40,8 +40,8 @@ y = df["Price"].values
 #Step-4 Split the Dataset
 ##We are splitting with standard 70/30 splitting ratio
 
-#X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.3,shuffle=True) #Shuffle will not work with scikit-leanr 0.18
-X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.3)
+X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.3,shuffle=True) #Shuffle will not work with scikit-leanr 0.18
+#X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.3)
 
 #Step-5 Select ALgorithm and configure hyperparametes
 model = ensemble.GradientBoostingRegressor()
