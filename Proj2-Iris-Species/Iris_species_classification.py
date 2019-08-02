@@ -36,7 +36,7 @@ for i in range(len(colors)):
 plt.legend(iris.target_names)
 plt.xlabel('Sepal length')
 plt.ylabel('Sepal width')
-#plt.show()
+plt.show()
 
 ##Stochastic Gradient Descent
 from sklearn.linear_model import SGDClassifier
