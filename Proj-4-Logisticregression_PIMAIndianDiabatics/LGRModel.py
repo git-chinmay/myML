@@ -23,8 +23,6 @@ import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)  #To avoid future warnings in output
 
 
-
-
 data_input = pd.read_csv("diabetes.csv")
 
 
@@ -45,7 +43,7 @@ y_predict = LGR_Train.predict(X_test)
 
 #Evaluting the model using confusion matrix
 model_eval = metrics.confusion_matrix(y_test,y_predict)
-print(model_eval)
+#print(model_eval)
 
 #CHecking the Models performance parameters(Confisuion matrix metrcs)
 accuracy = metrics.accuracy_score(y_test,y_predict)
@@ -55,6 +53,24 @@ recall = metrics.recall_score(y_test,y_predict)
 print(f'Model accuracy is: {(accuracy*100):.2f}%')
 print(f'Model precision is: {(precision*100):.2f}%')
 print(f'Model Recall is: {(recall*100):.2f}%')
+
+##Single value prediction
+"""
+Pregnancies = 1, Glucose=0, 'BloodPressure=42.9, 'SkinThickness=22, 'Insulin=199, 'BMI=76, 'DiabetesPedigreeFunction=1.394,
+
+row no = 661
+
+1 = Diabetics 
+0 = Non Diabetics
+"""
+single_pred = LGR_Train.predict([[1,0,80,1,1000,76,1.394]])
+if single_pred == 1:
+    print("\nDiabetics patients")
+else:
+    print("\nNon Diabetics patients")
+#print((data_input.Outcome).iloc[661])
+
+
 
 
 
