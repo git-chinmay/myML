@@ -70,7 +70,7 @@ else:
     print("\nNon Diabetics patients")
 #print((data_input.Outcome).iloc[661])
 
-
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
 
 
 
