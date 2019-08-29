@@ -19,6 +19,7 @@ X_train,X_test,y_train,y_test = train_test_split(X,y,test_size = 0.25,random_sta
 ##print(X_train.shape,y_train.shape)
 ##(112, 2) (112,)
 
+
 #Standardise the feature
 
 scaler = preprocessing.StandardScaler().fit(X_train)
@@ -42,6 +43,25 @@ plt.show()
 from sklearn.linear_model import SGDClassifier
 clf = SGDClassifier()
 clf.fit(X_train,y_train)
-print(f"The coeeficient {clf.coef_}")
-print(f"The intercept {clf.intercept_}")
+#print(f"The coeeficient {clf.coef_}")
+#print(f"The intercept {clf.intercept_}")
 
+###Our CLF got trained by fit function,now we can apply for predicting the 
+X_train_single = scaler.transform([[4.7,3.1]]) #sepal width & Length,It always take 2D array
+
+print(f"FLower belongs to class: {clf.predict(X_train_single)}")
+
+##Evaluting the Result
+from sklearn import metrics
+y_train_pred = clf.predict(X_train)
+#Never measuer with Train data(will cause Overfitting)
+print(f"Classifier Accuracy with train data is: {metrics.accuracy_score(y_train,y_train_pred)}")
+
+#Hence measuering with Test data
+y_pred = clf.predict(X_test)
+print(f"Classifier Accuracy with Test data: {metrics.accuracy_score(y_test,y_pred)}")
+
+##The Classification report
+creport = metrics.classification_report(y_test,y_pred,target_names=iris.target_names)
+print("Classification report for the model is:")
+print(creport)
