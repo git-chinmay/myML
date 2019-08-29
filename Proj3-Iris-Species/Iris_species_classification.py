@@ -65,3 +65,8 @@ print(f"Classifier Accuracy with Test data: {metrics.accuracy_score(y_test,y_pre
 creport = metrics.classification_report(y_test,y_pred,target_names=iris.target_names)
 print("Classification report for the model is:")
 print(creport)
+
+##The Confusion matrix
+cmreport = metrics.confusion_matrix(y_test,y_pred)
+print("Confusion Matrix report for the model is:")
+print(cmreport)
