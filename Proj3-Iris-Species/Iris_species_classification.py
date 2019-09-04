@@ -1,4 +1,5 @@
 """
+Using The SciKit Learn Library
 Performing the Linear classification on the Iris flower dataset
 """
 
@@ -61,12 +62,36 @@ print(f"Classifier Accuracy with train data is: {metrics.accuracy_score(y_train,
 y_pred = clf.predict(X_test)
 print(f"Classifier Accuracy with Test data: {metrics.accuracy_score(y_test,y_pred)}")
 
-##The Classification report
+##Model Evaluation-1 (The Classification report)
+
 creport = metrics.classification_report(y_test,y_pred,target_names=iris.target_names)
 print("Classification report for the model is:")
 print(creport)
 
-##The Confusion matrix
+##Model Evaluation-2 (The Confusion matrix)
 cmreport = metrics.confusion_matrix(y_test,y_pred)
 print("Confusion Matrix report for the model is:")
 print(cmreport)
+
+##Model Evaluation-3 (Cross-Class validation)
+from sklearn.model_selection import cross_val_score,KFold
+from sklearn.pipeline import Pipeline
+#Create a composite estimator with pipeline for data standardisation and trai model with linear model
+clf = Pipeline([('scalar',preprocessing.StandardScaler()),
+                ('linear_model',SGDClassifier())])
+
+#Create a K-fold cross validation iterator of K-5 
+#cv = KFold(X.shape[0],5, shuffle = True,random_state=33 ) #This will throw TypeError
+cv = KFold(5, shuffle = True,random_state=33)
+K_Fold_score = cross_val_score(clf,X,y,cv=cv)
+print("K-Fold cross validation Accuracy Report: ")
+print(K_Fold_score)
+
+##To obtain the final figure from Cross-validation K fold output
+#We will calculate mean and standard error
+from scipy.stats import sem
+import numpy as np
+def mean_score(K_Fold_score):
+    return f"Model Mean score: {(np.mean(K_Fold_score)):.3f} (+/- {(sem(K_Fold_score)):.2f})"
+
+print(mean_score(K_Fold_score))
