@@ -8,7 +8,8 @@ Practice link :-
 import pandas as pd
 import matplotlib.pyplot as plt
 
-fruit = pd.read_table(r"C:\Users\n0278588\GITHUB-Local\myML\Proj2-FruitSurvey-SimpleClassificationModels\InputDataSet.txt")
+#fruit = pd.read_table(r"C:\Users\n0278588\GITHUB-Local\myML\Proj2-FruitSurvey-SimpleClassificationModels\InputDataSet.txt")
+fruit = pd.read_table(r"E:\VSCODE\GIT_Hub\myML\Proj2-FruitSurvey-SimpleClassificationModels\InputDataSet.txt")
 #print(fruit.head())
 #print(fruit.shape)
 #print(fruit['fruit_name'].unique())
