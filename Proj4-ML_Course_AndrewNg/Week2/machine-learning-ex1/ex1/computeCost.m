@@ -21,7 +21,8 @@ for i = 1:m;
     J = J+ k*(h(i)-y(i))^2;
 
 
-
+%vectorized multiplication way you can avoid for loop
+%J= (1/(2*m))*sum(((X*theta)-y).^2)
 % =========================================================================
 
 end
