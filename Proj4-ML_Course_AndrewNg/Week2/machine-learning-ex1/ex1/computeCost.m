@@ -12,8 +12,13 @@ J = 0;
 % ====================== YOUR CODE HERE ======================
 % Instructions: Compute the cost of a particular choice of theta
 %               You should set J to the cost.
+i =1;
+h = X*theta; %we suppose to multiply theta transpose with X but traspose makes multiplecation impossible
+k = 1/(2*m);
 
-
+for i = 1:m;
+    
+    J = J+ k*(h(i)-y(i)).^2;
 
 
 
