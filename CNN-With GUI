@@ -1,5 +1,6 @@
 """
 https://github.com/antaloaalonso/CNN-With-GUI
+https://www.youtube.com/watch?v=eyKwPyOqMg4
 """
 
 from keras.datasets import mnist
