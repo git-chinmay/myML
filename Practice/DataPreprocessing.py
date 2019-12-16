@@ -39,4 +39,20 @@ X= onehotencoder_x.fit_transform(X).toarray()
 #As purchase column is dependant only labelencoder will work
 labelencoder_y = LabelEncoder()
 y= labelencoder_y.fit_transform(y)
-print(y)
+#print(y)
+
+##spltting the dataset
+from sklearn.model_selection import train_test_split
+X_train,X_test,y_train,y_test=train_test_split(X,y,test_size = 0.2,random_state=0)
+#print(X_test)
+
+##Feature scaling(Equlidian distance)
+from sklearn.preprocessing import StandardScaler
+sc_X = StandardScaler()
+X_train = sc_X.fit_transform(X_train) #fit it and then transform
+X_test = sc_X.fit(X_test) #No need to trasnform
+
+print(X_train)
+print(X_test)
+
+
