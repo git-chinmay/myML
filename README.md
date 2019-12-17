@@ -1,16 +1,9 @@
 # myML
-Learning Machine Learning
+My ML learnings,projects and Journey!
 
-Andrew NG Coursera Assignment Submission :
+AWS ML Course Free:-  
+https://aws.amazon.com/training/learning-paths/machine-learning/
 
-How to submit ?
-Copy the token below and run the submission script included in the assignment download. 
-When prompted, 
-
-use your email address nayak.chinmay07@hotmail.com.
-
-Token: aOphWKobV8nkiqn1
-
-
-Your submission token is unique to you and should not be shared with anyone. 
-You may submit as many times as you like.
+Look into it
+https://github.com/elaiken3/twitter_api-nlp-project1/blob/master/twitter_api-nlp-project.ipynb
+https://towardsdatascience.com/twitter-api-and-nlp-7a386758eb31
