@@ -1,3 +1,8 @@
+"""
+Link to bakward eliminating concept
+https://www.geeksforgeeks.org/ml-multiple-linear-regression-backward-elimination-technique/
+"""
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as pyplot
