@@ -12,7 +12,11 @@ J = 0;
 % ====================== YOUR CODE HERE ======================
 % Instructions: Compute the cost of a particular choice of theta
 %               You should set J to the cost.
-
+data = load('ex1data1.txt');
+X = [ones(m,1),data(:,1)]; % Add a column of ones to x 
+y = data(:, 2);
+theta = zeros(2,1);
+iterations = 1500;
 
 
 
