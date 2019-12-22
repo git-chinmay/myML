@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-dataset = pd.read_csv(r'C:\Users\n0278588\GITHUB-Local\myML\Practice\Polynomialregression\Position_Salaries.csv')
+dataset = pd.read_csv(r'E:\VSCODE\GIT_Hub\myML\Practice\Polynomialregression\Position_Salaries.csv')
 
 X = dataset.iloc[:,1:2].values
 y = dataset.iloc[:,2].values
