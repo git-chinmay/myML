@@ -1,5 +1,6 @@
 """
 Polynomial Regression
+Predicting a new result with Polynomial Regression 6.5 years: [174878.0776519]
 """
 import numpy as np
 import pandas as pd

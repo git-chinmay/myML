@@ -1,5 +1,6 @@
 """
 Its from SVM but not SVM.
+The SVR predicted Salary for 6.5 years experience: [252789.13921624]
 """
 import pandas as pd 
 import numpy as np 
