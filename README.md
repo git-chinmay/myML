@@ -1,8 +1,7 @@
 # myML
 My ML learnings,projects and Journey!
 
-AWS ML Course Free:-  
-https://aws.amazon.com/training/learning-paths/machine-learning/
+Looking Promising for learning(All coruses are there):  https://www.ritchieng.com/logistic-regression/
 
 Look into it
 https://github.com/elaiken3/twitter_api-nlp-project1/blob/master/twitter_api-nlp-project.ipynb
