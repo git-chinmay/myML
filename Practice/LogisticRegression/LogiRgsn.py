@@ -15,12 +15,18 @@ Confusion matrix: [[66  2]
 
 89 (66+23) correct predictions
 11 (9+2) In correct predictions
+
+5)Some strange prediction with input like age = 60,salary=100,output "Will buy SUV"
+    Looks like heavily influenceed by Age column.
+    Tested enabling level encoder only(Not hot encoding) with all feature inputs still same result.
+    15098,1,60,1  = > Wil buy the SUV
 """
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-dataset = pd.read_csv(r'E:\VSCODE\GIT_Hub\myML\Practice\LogisticRegression\Social_Network_Ads.csv')
+dataset = pd.read_csv(r'C:\Users\n0278588\GITHUB-Local\myML\Practice\KNN\Social_Network_Ads.csv')
 
 #X = dataset.iloc[:,:-1].values #May need hot encoding for Gender column
 X = dataset.iloc[:,[2,3]].values # By this we can select specifc columns
@@ -31,7 +37,7 @@ y = dataset.iloc[:,4].values
 #encoder = LabelEncoder()
 #X[:,1] = encoder.fit_transform(X[:,1])
 #hotencoder = OneHotEncoder()
-#X= hotencoder.fit_transform(X).toarray()
+#X = hotencoder.fit_transform(X).toarray()
 
 
 
@@ -39,24 +45,29 @@ y = dataset.iloc[:,4].values
 from sklearn.model_selection import train_test_split
 X_train,X_test,y_train,y_test  = train_test_split(X,y,test_size=0.25,random_state=0)
 
+
 #Feature Scaling
 from sklearn.preprocessing import StandardScaler
 scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
-X_test = scaler.fit_transform(X_test)
+X_test = scaler.transform(X_test)
 
+
+
+#-0.10050378  0.         -0.10050378 -0.10050378  0.          0.
+#15694829,    Female,      32,        150000,     1
 
 #Model
 from sklearn.linear_model import LogisticRegression
 classifier = LogisticRegression()
 classifier.fit(X_train,y_train)
 y_pred = classifier.predict(X_test)
-print(f"Predicted value: {y_pred}")
+#print(f"Predicted value: {y_pred}")
 
 #for i in y_pred:
 #    print(i)
 
-print(f"Actual value: {y_test}")
+#print(f"Actual value: {y_test}")
 #for j in y_test:
 #    print(j)
 
@@ -75,6 +86,26 @@ from sklearn.metrics import confusion_matrix
 cm = confusion_matrix(y_test,y_pred)
 print(f"Confusion matrix: {cm}")
 
+
+#Random Prediction
+agex,salaryx = 60,100
+z=[[agex,salaryx]]
+
+#Male =1,Female=0
+#userIDx,genderx,agex,salaryx = 15098,1,60,1
+#z=[[userIDx,genderx,agex,salaryx]]
+
+z = scaler.transform(z)
+
+print(classifier.predict(z))
+
+
+if classifier.predict(z)[0] == 1:
+    print("Will buy the SUV.")
+else:
+    print("Will not buy the SUV.")
+
+
 #Visualisation
 from matplotlib.colors import ListedColormap
 #X_set, y_set = X_train, y_train
@@ -92,7 +123,7 @@ plt.title('Classifier (Test set)')
 plt.xlabel('Age')
 plt.ylabel('Estimated Salary')
 plt.legend()
-plt.show()
+plt.show() 
 
 
 
