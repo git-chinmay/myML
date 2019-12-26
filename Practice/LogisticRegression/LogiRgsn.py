@@ -9,14 +9,18 @@ Observations :
 
 3)All inputs with One hot encoding
     No of wrong predictions: 11 out of total 100 observations.
-
-
+4)With confusion matrix
+Confusion matrix: [[66  2]
+                  [ 9 23]]
+                  
+89 (66+23) correct predictions
+11 (9+2) In correct predictions
 """
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-dataset = pd.read_csv(r'C:\Users\n0278588\GITHUB-Local\myML\Practice\LogisticRegression\Social_Network_Ads.csv')
+dataset = pd.read_csv(r'E:\VSCODE\GIT_Hub\myML\Practice\LogisticRegression\Social_Network_Ads.csv')
 
 X = dataset.iloc[:,:-1].values #May need hot encoding for Gender column
 #X = dataset.iloc[:,[0,2,3]].values # By this we can select specifc columns
@@ -64,6 +68,12 @@ for i in range(length_of_array):
         match +=1
 
 print(f"\nNo of wrong predictions: {match} out of total {length_of_array} observations.")
+
+#Another intersting way to determine model performnace
+#confusion matrix
+from sklearn.metrics import confusion_matrix
+cm = confusion_matrix(y_test,y_pred)
+print(f"Confusion matrix: {cm}")
 
 
 
