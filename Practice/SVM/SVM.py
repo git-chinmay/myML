@@ -1,10 +1,13 @@
 """
-K-Nearest Neighbour
-1) 7 Wrong Predictions out of total 100
-2) Some strange prediction with input like age = 60,salary=100,output "Will buy SUV"
-    Looks like heavily influenceed by Age column.
-3) 
+SVM (LSVM - Liner SVM)
+Obervations
+1) With default kernel 'rbf' :- no of wrong prediction 7
+2) With kernel 'linear' :- No of wrong prediction 10
+3) With kernel 'sigmoid' :- No of wrong prediction 26 
+   but the random prediction is "Will not buy SUV" for input 60 years and 100 
+   Looks like majority prediction is "Will not buy the SUV"
 """
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -24,8 +27,8 @@ X_train = scale.fit_transform(X_train)
 X_test = scale.transform(X_test)
 
 #Model training
-from sklearn.neighbors import KNeighborsClassifier
-classifier = KNeighborsClassifier(n_neighbors=5)
+from sklearn.svm import SVC
+classifier = SVC(kernel='sigmoid')
 classifier.fit(X_train,y_train)
 y_pred = classifier.predict(X_test)
 
@@ -34,8 +37,9 @@ from sklearn.metrics import confusion_matrix
 matrix = confusion_matrix(y_test,y_pred)
 print(f"confusion matrix: {matrix}")
 
+
 #Random Prediction
-agex,salaryx = 60,100
+agex,salaryx = 60,300000
 z=[[agex,salaryx]]
 z = scale.transform(z)
 
@@ -47,7 +51,7 @@ if classifier.predict(z)[0] == 1:
 else:
     print("Will not buy the SUV.")
 
-"""
+
 #Visualisation
 from matplotlib.colors import ListedColormap
 #X_set, y_set = X_train, y_train
@@ -61,11 +65,11 @@ plt.ylim(X2.min(), X2.max())
 for i, j in enumerate(np.unique(y_set)):
     plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
                 c = ListedColormap(('red', 'green'))(i), label = j)
-plt.title('KNN Classifier (Test set)')
+plt.title('SVM Classifier (Test set)')
 plt.xlabel('Age')
 plt.ylabel('Estimated Salary')
 plt.legend()
-plt.show()"""
+plt.show()
 
 
     
