@@ -1,11 +1,7 @@
 """
-SVM (LSVM - Liner SVM) and Kernel-SVM
-Obervations
-1) With default kernel 'rbf' :- no of wrong prediction 7
-2) With kernel 'linear' :- No of wrong prediction 10
-3) With kernel 'sigmoid' :- No of wrong prediction 26 
-   but the random prediction is "Will not buy SUV" for input 60 years and 100 
-   Looks like majority prediction is "Will not buy the SUV"
+Naive Bay's Model
+With agex,salaryx = 60,1 : will buy the SUV
+
 """
 
 import numpy as np
@@ -27,8 +23,8 @@ X_train = scale.fit_transform(X_train)
 X_test = scale.transform(X_test)
 
 #Model training
-from sklearn.svm import SVC
-classifier = SVC(kernel='rbf')
+from sklearn.naive_bayes import GaussianNB
+classifier = GaussianNB()
 classifier.fit(X_train,y_train)
 y_pred = classifier.predict(X_test)
 
@@ -39,7 +35,7 @@ print(f"confusion matrix: {matrix}")
 
 
 #Random Prediction
-agex,salaryx = 60,300000
+agex,salaryx = 60,1
 z=[[agex,salaryx]]
 z = scale.transform(z)
 
@@ -65,7 +61,7 @@ plt.ylim(X2.min(), X2.max())
 for i, j in enumerate(np.unique(y_set)):
     plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
                 c = ListedColormap(('red', 'green'))(i), label = j)
-plt.title('SVM Classifier (Test set)')
+plt.title('Naive Bays Classifier (Test set)')
 plt.xlabel('Age')
 plt.ylabel('Estimated Salary')
 plt.legend()
