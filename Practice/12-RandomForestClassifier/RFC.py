@@ -1,17 +1,13 @@
 """
-Decision Tree Classification.(DT can be used in both Regression and classification problem)
-In DT actually we dont need feature scaling but still we are going to use it as we are visualising the 
-output with some resolution setting and without featur scalingit will may no work or 
-take too much time to process.
+Random Forest classifier
 
-Observations:
---9 wrong predictions
---With agex,salaryx = 60,1 : will buy the SUV
---With Criterion = 'gini' we have 10 wrong preictions
+Observations:- 10 trees voting for new datapoints
+7 wrong predictions
+With random_state=0 ,9 wrong predictions
+agex,salaryx = 60,1 : will buy the SUV
+with 100 estimator also no difference observed.
+CLearly there is overfitting.
 
-Be careful,from the training dataset visulaisation it looks lime model doing overfitting
-Its trying to capture all the DP in a region but while running test data.same region are empty.
-Over all the model looks good with less wrong predictions.
 """
 
 import numpy as np
@@ -33,8 +29,8 @@ X_train = scale.fit_transform(X_train)
 X_test = scale.transform(X_test)
 
 #Model training
-from sklearn.tree import DecisionTreeClassifier
-classifier = DecisionTreeClassifier(criterion='entropy')
+from sklearn.ensemble import RandomForestClassifier
+classifier = RandomForestClassifier(criterion = 'entropy',random_state=0)#default n_estimators = 10
 classifier.fit(X_train,y_train)
 y_pred = classifier.predict(X_test)
 
@@ -71,7 +67,7 @@ plt.ylim(X2.min(), X2.max())
 for i, j in enumerate(np.unique(y_set)):
     plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
                 c = ListedColormap(('red', 'green'))(i), label = j)
-plt.title('Decesion Tree Classifier (Test set)')
+plt.title('Random Forest Classifier (Test set)')
 plt.xlabel('Age')
 plt.ylabel('Estimated Salary')
 plt.legend()
