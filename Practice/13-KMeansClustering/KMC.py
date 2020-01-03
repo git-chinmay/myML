@@ -10,7 +10,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-dataset=pd.read_csv(r'E:\VSCODE\GIT_Hub\myML\Practice\13-KMeansClustering\Mall_Customers.csv')
+dataset=pd.read_csv(r'C:\Users\n0278588\GITHUB-Local\myML\Practice\13-KMeansClustering\Mall_Customers.csv')
 X = dataset.iloc[:,[3,4]].values #Age and Annual Income
 
 #No need to data spliting
