@@ -1,0 +1,94 @@
+PS: classify the incoming inc to fall under which group
+No of variables: Queue,Priority,Customer,CI,Submitted
+
+Feature matrices : Submitted,Customer,CI,Priority
+Target : Queue
+
+we have to go for one hot encoding for entire input and output variables
+
+Case1: SupervisedLearning
+Problem type: Classification type
+Data type:- Non liner
+Model Selection:KNN,SVM,Naive bays,DT,RF
+
+KNN Run:-
+Confusion Matrx : 
+
+   A      B    C    D   E    F     G =  7 classes
+[[ 238    1    2    0   41   11    0]
+ [   0   25    0    0    3    1    0]
+ [  21    1   32    0   17    4    0]
+ [   0    0    0    7    9    3    0]
+ [   7    0    0    0 3633    8    0]
+ [  44    0    4    1  397  256    1]
+ [   4    0    0    0    7    2    3]]
+
+ There are 7 classes (7 columns)
+ Class-A 
+ tp = 238
+ fp = 76  (Rest of the 'a' column e.g 21+0+7+44+4 = 76)
+ tn = 4414
+ 
+ (all of the other figures in the non-a rows and columns, the 6x6 sub-matrix. 
+ This will reduce all 35K+(dataset observations) trials to a 2x2 matrix with labels a and not a, 
+ the 2x2 confusion matrix with which you're already familiar.)
+
+        [25    0    0    3    1    0]
+        [1    32    0   17    4    0]
+        [0     0    7    9    3    0]
+        [0     0    0 3633    8    0]
+        [0     4    1  397  256    1]
+        [0     0    0    7    2    3]
+
+Sum of all elements will be true negative = 4414
+
+ fn = 55 (Rest of the 'a' rows element e.g 1+2+0+41+11+0 =55 )
+
+ So class-A  confusion matrix will something look like below
+
+ tp fp | 238 76
+       |
+ fn tn | 55 4414
+
+ Class A Accuracy = tp+tn/tp+tn+fp+fn = 4652/4768 = 0.97 (From Script 0.97261133)
+
+ CLass B 
+ tp = 25
+ fp = 2
+ tn = 4752
+
+ [  238       2    0   41   11    0]
+ [  21       32    0   17    4    0]
+ [   0        0    7    9    3    0]
+ [   7        0    0 3633    8    0]
+ [  44        4    1  397  256    1]
+ [   4        0    0    7    2    3]
+
+ fn = 4
+
+  So class-B  confusion matrix will something look like below
+
+ tp fp | 2 76
+       |
+ fn tn | 4 4752
+
+ Class B Accuracy = tp+tn/tp+tn+fp+fn = 4754/4834 = 0.98 (From script 0.99874556)
+
+ Class F 
+ tp = 256
+ fp = 29
+ tn = 4051
+ fn = 447
+
+   So class-F  confusion matrix will something look like below
+
+ tp fp | 256 29
+       |
+ fn tn | 447 4051
+
+ Class F Accuracy = tp+tn/tp+tn+fp+fn = 4307/4783 = 0.90 (From Script 0.90048087)
+
+ Note: Manual calculation matching with result of Script for Multicalss Confusion matrix
+ matrix Accuracy result = 
+ [0.97261133 0.99874556 0.98975538 0.99728204 0.89776291 0.90048087
+ 0.99707297]
