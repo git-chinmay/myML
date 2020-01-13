@@ -92,3 +92,11 @@ Sum of all elements will be true negative = 4414
  matrix Accuracy result = 
  [0.97261133 0.99874556 0.98975538 0.99728204 0.89776291 0.90048087
  0.99707297]
+
+ #Random input prediction for KNN model 
+ input:  X_random = [["12/31/2019 0:00",  "Liberty BPPM",  "vmpip-5wa8xh2c", "P2NM"]] 
+ prediction : Group: ['HS-AE-DATABASE-ALERTS']
+
+ input: X_random = [["07/28/2019 0:00",  "Wendell Jones",  "VMKIP-H4SCMS01", "P2NM"]]
+ prediction : 
+ Actual : HS-MW-DB CORE DATABASE

@@ -4,7 +4,7 @@ import time
 #import matplotlib.pyplot as plt
 
 starttime = time.time()
-dataset = pd.read_csv(r'C:\Users\n0278588\OneDrive - Liberty Mutual\ML\MLproject1\SummerisedDBTower_ClosedIncidents_2019.csv')
+dataset = pd.read_csv(r'E:\VSCODE\GIT_Hub\myML\MLproject1\SummerisedDBTower_ClosedIncidents_2019.csv')
 
 
 """
@@ -20,25 +20,22 @@ y= dataset.iloc[:,3].values
 
 
 
-
 ##One hot encoding
 #Labelencoder
 from sklearn.preprocessing import LabelEncoder
-labelencoder =LabelEncoder()
+labelencoderx =LabelEncoder()
+labelencodery =LabelEncoder()
 
 #print(X[:,[0,1,2,3]])
-X[:,0] = labelencoder.fit_transform(X[:,0])
-X[:,1] = labelencoder.fit_transform(X[:,1])
-X[:,2] = labelencoder.fit_transform(X[:,2])
-X[:,3] = labelencoder.fit_transform(X[:,3])
-y = labelencoder.fit_transform(y)
-
-
-
+X[:,0] = labelencoderx.fit_transform(X[:,0])
+X[:,1] = labelencoderx.fit_transform(X[:,1])
+X[:,2] = labelencoderx.fit_transform(X[:,2])
+X[:,3] = labelencoderx.fit_transform(X[:,3])
+y = labelencodery.fit_transform(y)
 
 #X[:,[0,1,2,3]] = encoder.fit_transform(X[:,[0,1,2,3]])
 ##print(f'Lebel encoder X: {X[0]}')
-#print(f'y After: {y[0]}')
+
 
 #Puting one hot encoder on X
 from sklearn.preprocessing import OneHotEncoder
@@ -55,8 +52,13 @@ from sklearn.neighbors import KNeighborsClassifier
 classifier = KNeighborsClassifier(n_neighbors=5)
 classifier.fit(X_train,y_train)
 y_pred = classifier.predict(X_test)
+#print(f'y0 predict: {y[0]}')
+#print(f'y1 predict: {y[1]}')
+#print(f'y2 predict: {y[2]}')
+#print(f'y3 predict: {y[3]}')
+#print(f'y4 predict: {y[4]}')
+#print(f'y5 predict: {y[5]}')
 
-#print(f"Predicted y_pred {y_pred[0:10]}")
 #COnfusion matrix
 from sklearn.metrics import confusion_matrix
 cm = confusion_matrix(y_test,y_pred)
@@ -65,7 +67,6 @@ print(f"Confusion Matrx : {cm}")
 #Calculating Accuracy from Confusion matrix
 def accuracyCalc(cnf_matrix):
 
-       
 
       FP = cnf_matrix.sum(axis=0) - np.diag(cnf_matrix)  
       FN = cnf_matrix.sum(axis=1) - np.diag(cnf_matrix)
@@ -114,21 +115,18 @@ def accuracyCalc(cnf_matrix):
 accuracyCalc(cm)
 
 
-
 ##Random Prediction
 #'Submitted','Customer','CI','Priority'
 
-X_random = [["12/31/2019 0:00"],  ["Liberty BPPM"],  ["vmpip-5wa8xh2c"], ["P2NM"]]
+X_random = [["07/28/2019 0:00",  "Wendell Jones",  "VMKIP-H4SCMS01", "P2NM"]]
 
-X_random[0] = labelencoder.fit_transform(X[0])
-X_random[1] = labelencoder.fit_transform(X[1])
-X_random[2] = labelencoder.fit_transform(X[2])
-X_random[3] = labelencoder.fit_transform(X[3])
 
+#X_random[0] = labelencoderx.fit_transform(X[0])
+X_random = labelencoderx.fit_transform(X_random)
 X_random = onehotencoder.fit_transform(X_random).toarray()
 
 y_Randompred = classifier.predict(X_random)
-print(f"Group: {labelencoder.inverse_transform(y)}")
+print(f"Group: {labelencodery.inverse_transform(y_Randompred)}")
 
 endtime = time.time()
 print(f"Total Model execution time(Seconds): {endtime-starttime}")
