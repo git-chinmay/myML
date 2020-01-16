@@ -121,9 +121,12 @@ accuracyCalc(cm)
 X_random = [["07/28/2019 0:00",  "Wendell Jones",  "VMKIP-H4SCMS01", "P2NM"]]
 
 
-#X_random[0] = labelencoderx.fit_transform(X[0])
-X_random = labelencoderx.fit_transform(X_random)
+X_random[0] = labelencoderx.fit_transform(X[0])
+
+print(f"X_random one lebel encoded {X_random}")
 X_random = onehotencoder.fit_transform(X_random).toarray()
+
+print(f"X_random one hot encoded {X_random}")
 
 y_Randompred = classifier.predict(X_random)
 print(f"Group: {labelencodery.inverse_transform(y_Randompred)}")
