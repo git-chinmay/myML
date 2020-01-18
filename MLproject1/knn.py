@@ -121,8 +121,6 @@ accuracyCalc(cm)
 X_random = [["21/1/2018  10:00:00",  "Liberty BPPM",  "PAPIP-CWCDBD01", "P3"]]
 
 
-
-
 X_random[0] = labelencoderx.fit_transform(X[0])
 
 print(f"X_random one lebel encoded {X_random}")
