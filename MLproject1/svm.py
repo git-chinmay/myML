@@ -1,4 +1,7 @@
 """
+svm
+"""
+"""
 knn model
 """
 
@@ -52,8 +55,8 @@ from sklearn.model_selection import train_test_split
 X_train,X_test,y_train,y_test = train_test_split(X,y,train_size=0.7,random_state=0)
 
 #Train the model
-from sklearn.neighbors import KNeighborsClassifier
-classifier = KNeighborsClassifier(n_neighbors=10)
+from sklearn.svm import SVC
+classifier = SVC()
 classifier.fit(X_train,y_train)
 y_pred = classifier.predict(X_test)
 #print(f'y0 predict: {y[0]}')
