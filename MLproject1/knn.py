@@ -118,7 +118,9 @@ accuracyCalc(cm)
 ##Random Prediction
 #'Submitted','Customer','CI','Priority'
 
-X_random = [["07/28/2019 0:00",  "Wendell Jones",  "VMKIP-H4SCMS01", "P2NM"]]
+X_random = [["21/1/2018  10:00:00",  "Liberty BPPM",  "PAPIP-CWCDBD01", "P3"]]
+
+
 
 
 X_random[0] = labelencoderx.fit_transform(X[0])
