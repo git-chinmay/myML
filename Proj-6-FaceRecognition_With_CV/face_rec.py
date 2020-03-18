@@ -1,8 +1,13 @@
 """
+-------------------------------------------------------------
+RECOGNIZE FACE(S) IN A PHOTOGRAPH BASED ON SET OF PHOTOGRAPHS
+-------------------------------------------------------------
+
 Prerequsites:
 A 64 bit machine with 64 bit  Python
 MS visula studio C++ developer setup (Can be downloaded free from MS sites)
 
+Myref :-  https://github.com/ageitgey/face_recognition
 """
 
 import face_recognition as fr
