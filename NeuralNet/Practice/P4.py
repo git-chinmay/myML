@@ -38,8 +38,8 @@ class DenseLayer:
         # self.output = np.dot(input, np.transpose(self.weights)) + self.biases
 
 
-Layer1 = DenseLayer(4, 1000)
-Layer2 = DenseLayer(1000, 1)
+Layer1 = DenseLayer(4, 2)
+Layer2 = DenseLayer(2, 1)
 Layer1.forward(X_input)
 # print(Layer1.output)
 Layer2.forward(Layer1.output)
