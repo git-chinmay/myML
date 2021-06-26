@@ -1,0 +1,6 @@
+numpy==1.18.5  
+matplotlib
+pandas
+pandas_datareader
+sklearn
+tensorflow
