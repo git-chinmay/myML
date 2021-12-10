@@ -1,0 +1,8 @@
+1) Neural Network & Deep Learning :- http://neuralnetworksanddeeplearning.com/chap1.html
+   (Just for quick start chapter one)
+
+2) MNIST Dataset for image recogition:- http://yann.lecun.com/exdb/mnist/
+
+3) Looking Promising for learning(All coruses are avialble):  https://www.ritchieng.com/logistic-regression/
+
+
